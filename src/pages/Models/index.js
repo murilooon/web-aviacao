@@ -6,13 +6,16 @@ class Models extends Component {
   constructor(props) {
     super(props);
 
-    const { models } = props;
+    const { models, redirect, redirectModel } = props;
 
     this.state = {
-      models
+      models,
+      redirect,
+      redirectModel
     }
 
     this.handleDeleteModel = this.handleDeleteModel.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -40,19 +43,31 @@ class Models extends Component {
     alert("Modelo exlcuido com sucesso!")
   }
 
+  handleRedirect(model) {
+    this.setState({ redirect: true, redirectModel: model })
+  }
+
   render () {
     return (
-      <AllModels models={this.state.models} onChange={this.handleDeleteModel} />
+      <AllModels
+        models={this.state.models}
+        redirect={this.state.redirect}
+        onChange={this.handleDeleteModel}
+        setRedirect={this.handleRedirect}
+        redirectModel={this.state.redirectModel}
+      />
     );
   }
 }
 
 Models.propTypes = {
-  models: PropTypes.array.isRequired
+  models: PropTypes.array.isRequired,
+  redirect: PropTypes.bool.isRequired
 };
 
 Models.defaultProps = {
-  models: []
+  models: [],
+  redirect: false
 };
 
 export default Models;

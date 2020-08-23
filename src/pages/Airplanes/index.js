@@ -6,13 +6,16 @@ class Airplanes extends Component {
   constructor(props) {
     super(props);
 
-    const { airplanes } = props;
+    const { airplanes, redirect, redirectAirplane } = props;
 
     this.state = {
-      airplanes
+      airplanes,
+      redirect,
+      redirectAirplane
     }
 
     this.handleDeleteAirplane = this.handleDeleteAirplane.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -35,24 +38,36 @@ class Airplanes extends Component {
         method: 'DELETE'
     }).then(response => response.json())
 
-    this.setState({airplanes: airplanesArray})
+    this.setState({ airplanes: airplanesArray })
 
     alert("Avião exlcuido com sucesso!")
   }
 
+  handleRedirect(airplane) {
+    this.setState({ redirect: true, redirectAirplane: airplane })
+  }
+
   render () {
     return (
-      <AllAirplanes airplanes={this.state.airplanes} onChange={this.handleDeleteAirplane} />
+      <AllAirplanes
+        airplanes={this.state.airplanes}
+        redirect={this.state.redirect}
+        onChange={this.handleDeleteAirplane}
+        setRedirect={this.handleRedirect}
+        redirectAirplane={this.state.redirectAirplane}
+      />
     );
   }
 }
 
 Airplanes.propTypes = {
-  airplanes: PropTypes.array.isRequired
+  airplanes: PropTypes.array.isRequired,
+  redirect: PropTypes.bool.isRequired
 };
 
 Airplanes.defaultProps = {
-  airplanes: []
+  airplanes: [],
+  redirect: false
 };
 
 export default Airplanes
