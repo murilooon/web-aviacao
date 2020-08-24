@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
+import './styles.css';
+
 export const AllAirplanes = ({ airplanes, onChange, redirect, setRedirect, redirectAirplane }) => {
   return (
     <div>
-      <center><h1>Lista de Aviões</h1><Button variant="dark" href="/addeditairplanes">Adicionar</Button></center>
+      <div className="title">
+        <h1>Lista de de Aviões</h1>
+        <Button variant="dark" href="/addeditairplanes">Adicionar novo avião</Button>
+      </div>
+
       {airplanes.map((airplane, key) => (
         <div className="container" key={key}>
           <div className="row">
-            <div className="card col-sm-10">
+            <div className="card col-sm-10 padding">
               <h5 className="card-title">Numero Serial: {airplane.serialnumber}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">Modelo: {airplane.modelid}</h6>
+              <h6 className="card-subtitle text-muted">ID do Modelo: {airplane.modelid}</h6>
             </div>
             <div className="col-sm-2">
               {redirect ? <Redirect to={{pathname: `/addeditairplanes`, state: { referrer: redirectAirplane }}} /> : <div></div>}
