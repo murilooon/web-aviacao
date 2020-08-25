@@ -20,7 +20,7 @@ export const AllAirplanes = ({ airplanes, onChange, redirect, setRedirect, redir
               <h5 className="card-title">Numero Serial: {airplane.serialnumber}</h5>
               <h6 className="card-subtitle text-muted">ID do Modelo: {airplane.modelid}</h6>
             </div>
-            <div className="col-sm-2">
+            <div className="col-sm-2 button">
               {redirect ? <Redirect to={{pathname: `/addeditairplanes`, state: { referrer: redirectAirplane }}} /> : <div></div>}
               <Button variant="dark" onClick={() => setRedirect(airplane)}>Editar</Button>
               <Button variant="danger" onClick={() => onChange(airplane)}>Deletar</Button>

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AllModels from '../../components/allModels';
 
+import api from '../../services/api';
+
 class Models extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +21,14 @@ class Models extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/model')
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ models: data })
+    api.get('/model')
+    .then(response => {
+      this.setState({ models: response.data })
     })
-    .catch(console.log)
+    .catch(error => {
+      console.log(error);
+      alert('Aplicação não conseguiu se conectar ao banco!')
+    })
   }
 
   handleDeleteModel(model) {
@@ -34,13 +38,15 @@ class Models extends Component {
 
     var id = model.modelid
 
-    fetch(`http://localhost:3000/api/model/${id}`, {
-        method: 'DELETE'
-    }).then(response => response.json())
-
-    this.setState({models: modelsArray})
-
-    alert("Modelo exlcuido com sucesso!")
+    api.delete(`/model/${id}`)
+    .then(() => {
+      this.setState({ models: modelsArray })
+      alert('Modelo deletado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('O modelo não conseguiu ser deletado!')
+    })
   }
 
   handleRedirect(model) {

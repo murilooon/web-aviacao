@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
+import api from '../../services/api';
+
 class AddEditAirplanes extends Component {
   constructor(props) {
     super(props);
@@ -28,27 +30,33 @@ class AddEditAirplanes extends Component {
   }
 
   addAirplane(model, serialNumber) {
-    fetch('http://localhost:3000/api/airplane', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({'modelId': model, 'serialNumber': serialNumber})
-    });
+    api.post('/airplane', {
+      modelId: model,
+      serialNumber: serialNumber
+    })
+    .then(() => {
+      alert('Avião criado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('Erro ao criar avião, verifique se existe um modelo com essa ID!')
+    })
   }
 
   updateAirplane(model, serialNumber) {
     const { airplane } = this.state;
 
-    fetch(`http://localhost:3000/api/airplane/${airplane.registerid}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({'modelId': model, 'serialNumber': serialNumber})
-    });
+    api.put(`/airplane/${airplane.registerid}`, {
+      modelId: model,
+      serialNumber: serialNumber
+    })
+    .then(() => {
+      alert('Avião editado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('Erro ao editar avião, verifique se existe um modelo com essa ID!')
+    })
   }
 
   handleSubmit(event) {
@@ -78,13 +86,23 @@ class AddEditAirplanes extends Component {
 
         <Form onSubmit={this.handleSubmit} >
           <Form.Group controlId="formBasicSerialNumber">
-            <Form.Label>Serial Number</Form.Label>
-            <Form.Control type="serialNumber" placeholder="Digite o numero serial" defaultValue={airplane.serialnumber} />
+            <Form.Label>Número Serial</Form.Label>
+            <Form.Control
+              required
+              type="number"
+              placeholder="Digite o número serial"
+              defaultValue={airplane.serialnumber}
+            />
           </Form.Group>
 
           <Form.Group controlId="formBasicModel">
-            <Form.Label>Modelo</Form.Label>
-            <Form.Control type="model" placeholder="Modelo" defaultValue={airplane.modelid} />
+            <Form.Label>ID do Modelo</Form.Label>
+            <Form.Control
+              required
+              type="number"
+              placeholder="Digite a ID do modelo"
+              defaultValue={airplane.modelid}
+            />
           </Form.Group>
 
           {this.renderRedirect()}

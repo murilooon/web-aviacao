@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AllAirplanes from '../../components/allAirplanes';
 
+import api from '../../services/api';
+
 class Airplanes extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +21,14 @@ class Airplanes extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/airplane')
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ airplanes: data })
+    api.get('/airplane')
+    .then(response => {
+      this.setState({ airplanes: response.data })
     })
-    .catch(console.log)
+    .catch(error => {
+      console.log(error);
+      alert('Aplicação não conseguiu se conectar ao banco!')
+    })
   }
 
   handleDeleteAirplane(airplane) {
@@ -34,13 +38,15 @@ class Airplanes extends Component {
 
     var id = airplane.registerid
 
-    fetch(`http://localhost:3000/api/airplane/${id}`, {
-        method: 'DELETE'
-    }).then(response => response.json())
-
-    this.setState({ airplanes: airplanesArray })
-
-    alert("Avião exlcuido com sucesso!")
+    api.delete(`/airplane/${id}`)
+    .then(() => {
+      this.setState({ airplanes: airplanesArray })
+      alert('Avião deletado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('O avião não conseguiu ser deletado, verifique conexão com o banco!')
+    })
   }
 
   handleRedirect(airplane) {

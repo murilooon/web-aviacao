@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
+import api from '../../services/api';
+
 class AddEditModels extends Component {
   constructor(props) {
     super(props);
@@ -28,27 +30,35 @@ class AddEditModels extends Component {
   }
 
   addModel(name, capacity, weight) {
-    fetch('http://localhost:3000/api/model', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({'name': name, 'capacity': capacity, weight: weight})
-    });
+    api.post('/model', {
+      name: name,
+      capacity: capacity,
+      weight: weight
+    })
+    .then(() => {
+      alert('Modelo criado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('Erro ao criar modelo, verifique conexão com o banco!')
+    })
   }
 
   updateModel(name, capacity, weight) {
     const { model } = this.state;
 
-    fetch(`http://localhost:3000/api/model/${model.modelid}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({'name': name, 'capacity': capacity, weight: weight})
-    });
+    api.put(`/model/${model.modelid}`, {
+      name: name,
+      capacity: capacity,
+      weight: weight
+    })
+    .then(() => {
+      alert('Modelo editado com sucesso!')
+    })
+    .catch(error => {
+      console.log(error);
+      alert('Erro ao editar modelo, verifique conexão com o banco!')
+    })
   }
 
   handleSubmit(event) {
@@ -80,17 +90,32 @@ class AddEditModels extends Component {
         <Form onSubmit={this.handleSubmit} >
           <Form.Group controlId="formBasicName">
             <Form.Label>Nome</Form.Label>
-            <Form.Control type="name" placeholder="Digite o nome" defaultValue={model.name} />
+            <Form.Control
+              required
+              type="text"
+              placeholder="Digite o nome"
+              defaultValue={model.name}
+            />
           </Form.Group>
 
           <Form.Group controlId="formBasicCapacity">
             <Form.Label>Capacidade</Form.Label>
-            <Form.Control type="capacity" placeholder="Digite a capacidade" defaultValue={model.capacity} />
+            <Form.Control
+              required
+              type="number"
+              placeholder="Digite a capacidade"
+              defaultValue={model.capacity}
+            />
           </Form.Group>
 
           <Form.Group controlId="formBasicWeight">
             <Form.Label>Peso</Form.Label>
-            <Form.Control type="weight" placeholder="Digite o peso" defaultValue={model.weight} />
+            <Form.Control
+              required
+              type="number"
+              placeholder="Digite o peso"
+              defaultValue={model.weight}
+            />
           </Form.Group>
 
           {this.renderRedirect()}
