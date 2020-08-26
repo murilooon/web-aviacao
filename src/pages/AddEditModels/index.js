@@ -93,7 +93,7 @@ class AddEditModels extends Component {
             <Form.Control
               required
               type="text"
-              placeholder="Digite o nome"
+              placeholder="Digite o nome!"
               defaultValue={model.name}
             />
           </Form.Group>
@@ -103,7 +103,7 @@ class AddEditModels extends Component {
             <Form.Control
               required
               type="number"
-              placeholder="Digite a capacidade"
+              placeholder="Digite a capacidade!"
               defaultValue={model.capacity}
             />
           </Form.Group>
@@ -113,7 +113,7 @@ class AddEditModels extends Component {
             <Form.Control
               required
               type="number"
-              placeholder="Digite o peso"
+              placeholder="Digite o peso!"
               defaultValue={model.weight}
             />
           </Form.Group>
