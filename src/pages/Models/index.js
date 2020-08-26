@@ -36,7 +36,7 @@ class Models extends Component {
     var index = modelsArray.indexOf(model)
     modelsArray.splice(index, 1)
 
-    var id = model.modelid
+    var id = model.model_id
 
     api.delete(`/model/${id}`)
     .then(() => {

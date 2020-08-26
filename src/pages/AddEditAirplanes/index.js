@@ -29,10 +29,10 @@ class AddEditAirplanes extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  addAirplane(model, serialNumber) {
+  addAirplane(model, serial_number) {
     api.post('/airplane', {
-      modelId: model,
-      serialNumber: serialNumber
+      model_id: model,
+      serial_number: serial_number
     })
     .then(() => {
       alert('Avião criado com sucesso!')
@@ -43,12 +43,12 @@ class AddEditAirplanes extends Component {
     })
   }
 
-  updateAirplane(model, serialNumber) {
+  updateAirplane(model, serial_number) {
     const { airplane } = this.state;
 
-    api.put(`/airplane/${airplane.registerid}`, {
-      modelId: model,
-      serialNumber: serialNumber
+    api.put(`/airplane/${airplane.register_id}`, {
+      model_id: model,
+      serial_number: serial_number
     })
     .then(() => {
       alert('Avião editado com sucesso!')
@@ -64,9 +64,9 @@ class AddEditAirplanes extends Component {
 
     var form = event.target
     var model = form.elements.formBasicModel.value
-    var serialNumber = form.elements.formBasicSerialNumber.value
+    var serial_number = form.elements.formBasicserial_number.value
 
-    isNewAirplane ? this.addAirplane(model, serialNumber) : this.updateAirplane(model, serialNumber)
+    isNewAirplane ? this.addAirplane(model, serial_number) : this.updateAirplane(model, serial_number)
 
     this.setState({ redirect: true })
   };
@@ -85,13 +85,13 @@ class AddEditAirplanes extends Component {
         <center><h1>{isNewAirplane ? "Adicionar" : "Editar"} Avião</h1></center>
 
         <Form onSubmit={this.handleSubmit} >
-          <Form.Group controlId="formBasicSerialNumber">
+          <Form.Group controlId="formBasicserial_number">
             <Form.Label>Número Serial</Form.Label>
             <Form.Control
               required
               type="number"
               placeholder="Digite o número serial"
-              defaultValue={airplane.serialnumber}
+              defaultValue={airplane.serial_number}
             />
           </Form.Group>
 
@@ -101,7 +101,7 @@ class AddEditAirplanes extends Component {
               required
               type="number"
               placeholder="Digite a ID do modelo"
-              defaultValue={airplane.modelid}
+              defaultValue={airplane.model_id}
             />
           </Form.Group>
 

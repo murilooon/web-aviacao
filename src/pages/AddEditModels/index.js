@@ -47,7 +47,7 @@ class AddEditModels extends Component {
   updateModel(name, capacity, weight) {
     const { model } = this.state;
 
-    api.put(`/model/${model.modelid}`, {
+    api.put(`/model/${model.model_id}`, {
       name: name,
       capacity: capacity,
       weight: weight
