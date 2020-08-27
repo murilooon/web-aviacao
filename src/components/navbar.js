@@ -1,5 +1,6 @@
 import React, {Component } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import LogIn from './login';
 
 class NavbarHeader extends Component {
   render () {
@@ -11,6 +12,7 @@ class NavbarHeader extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/models">Modelos</Nav.Link>
             <Nav.Link href="/airplanes">Aviões</Nav.Link>
+            <LogIn />
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Models from './pages/Models';
 import Airplanes from './pages/Airplanes';
@@ -8,12 +8,12 @@ import AddEditModels from './pages/AddEditModels';
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <Switch>
       <Route component={Models} path="/models" />
       <Route component={Airplanes} path="/airplanes" />
       <Route component={AddEditAirplanes} path="/addeditairplanes" />
       <Route component={AddEditModels} path="/addeditmodels" />
-    </BrowserRouter>
+    </Switch>
   );
 }
 
