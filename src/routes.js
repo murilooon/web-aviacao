@@ -5,12 +5,13 @@ import Models from './pages/Models';
 import Airplanes from './pages/Airplanes';
 import AddEditAirplanes from './pages/AddEditAirplanes';
 import AddEditModels from './pages/AddEditModels';
+import PrivateRoute from './components/privateRoute';
 
 const Routes = () => {
   return (
     <Switch>
       <Route component={Models} path="/models" />
-      <Route component={Airplanes} path="/airplanes" />
+      <PrivateRoute component={Airplanes} path="/airplanes" />
       <Route component={AddEditAirplanes} path="/addeditairplanes" />
       <Route component={AddEditModels} path="/addeditmodels" />
     </Switch>
