@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Routes from './routes';
 import NavbarHeader from './components/navbar';
 import { Router, Route, Switch } from "react-router-dom";
-// import Loading from "./components/Loading";
+import Loading from "./components/loading";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
@@ -14,9 +14,9 @@ const App = () => {
     return <div>Oops... {error.message}</div>;
   }
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Router history={history}>

@@ -9,7 +9,6 @@ import AddEditModels from './pages/AddEditModels';
 const Routes = () => {
   return (
     <Switch>
-      <Route component={Models} path="/" />
       <Route component={Models} path="/models" />
       <Route component={Airplanes} path="/airplanes" />
       <Route component={AddEditAirplanes} path="/addeditairplanes" />
