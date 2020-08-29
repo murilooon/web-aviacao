@@ -8,16 +8,20 @@ class AddEditAirplanes extends Component {
   constructor(props) {
     super(props);
 
+    const { models } = props;
+
     var edit = this.props.location.state;
 
     if(edit) {
       this.state = {
+        models: [],
         isNewAirplane: false,
         airplane: edit.referrer,
         redirect: false
       }
     } else {
       this.state = {
+        models: [],
         isNewAirplane: true,
         airplane: '',
         redirect: false
@@ -27,6 +31,17 @@ class AddEditAirplanes extends Component {
     this.addAirplane = this.addAirplane.bind(this);
     this.updateAirplane = this.updateAirplane.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    api.get('/model')
+    .then(response => {
+      this.setState({ models: response.data })
+    })
+    .catch(error => {
+      console.log(error);
+      alert('Aplicação não conseguiu se conectar ao banco!')
+    })
   }
 
   addAirplane(model, serial_number) {
@@ -78,7 +93,7 @@ class AddEditAirplanes extends Component {
   }
 
   render () {
-    const { airplane, isNewAirplane } = this.state;
+    const { airplane, isNewAirplane, models } = this.state;
 
     return (
       <div className="container">
@@ -97,12 +112,11 @@ class AddEditAirplanes extends Component {
 
           <Form.Group controlId="formBasicModel">
             <Form.Label>ID do Modelo</Form.Label>
-            <Form.Control
-              required
-              type="number"
-              placeholder="Digite a ID do modelo"
-              defaultValue={airplane.model_id}
-            />
+            <Form.Control as="select">
+              {models.map((model, key) => (
+                <option key={key}>{model.model_id}</option>
+              ))}
+            </Form.Control>
           </Form.Group>
 
           {this.renderRedirect()}
