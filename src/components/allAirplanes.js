@@ -18,7 +18,8 @@ export const AllAirplanes = ({ airplanes, onChange, redirect, setRedirect, redir
           <div className="row">
             <div className="card col-sm-10 padding">
               <h5 className="card-title">Numero Serial: {airplane.serial_number}</h5>
-              <h6 className="card-subtitle text-muted">ID do Modelo: {airplane.model_id}</h6>
+              <p className="card-text">ID do Modelo: {airplane.model_id}</p>
+              <p className="card-text">Atualizado em: { airplane.updated_at.replace('T', ' ').substr(0, 19) }</p>
             </div>
             <div className="col-sm-2 button">
               {redirect ? <Redirect to={{pathname: `/addeditairplanes`, state: { referrer: redirectAirplane }}} /> : <div></div>}
