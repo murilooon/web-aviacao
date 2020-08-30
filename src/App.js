@@ -1,31 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Routes from './routes';
 import NavbarHeader from './navbar';
+import { func, string } from 'prop-types';
 
+import { useDarkMode } from "./components/useDarkMode"
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
 import { lightTheme, darkTheme } from "./components/Themes";
+import Toggle from "./components/Toggler";
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, themeToggler, mountedComponent] = useDarkMode();
 
-  useEffect(() => {
-    const parsedTheme = localStorage.getItem("theme")
-    setTheme(parsedTheme)
-  }, [])
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme)
-  }, [theme])
-
-  const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
+  if(!mountedComponent) return <div/>
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeMode}>
+      <Toggle theme={theme} toggleTheme={themeToggler} />
       <GlobalStyles/>
-      <NavbarHeader theme={themeToggler} />
+      <NavbarHeader/>
       <Routes />
     </ThemeProvider>
   );
