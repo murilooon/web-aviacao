@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
+import { useDarkMode } from "./useDarkMode"
 
 import './styles.css';
 
 export const AllModels = ({ models, onChange, redirect, setRedirect, redirectModel }) => {
-  const [theme, setTheme] = useState();
-
-  useEffect(() => {
-    const parsedTheme = localStorage.getItem("theme")
-    setTheme(parsedTheme)
-  }, [])
+  const [theme] = useDarkMode();
 
   return (
     <div>

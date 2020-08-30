@@ -1,7 +1,13 @@
 import React from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
+import Toggle from "./components/Toggler";
+import { useDarkMode } from "./components/useDarkMode";
+import { lightTheme, darkTheme } from "./components/Themes";
+import { func, string } from 'prop-types';
 
-const NavbarHeader = ({ theme }) => {
+const NavbarHeader = ({ theme, handleThemeToggler }) => {
+  // const [theme, themeMode, themeToggler] = useDarkMode();
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>Aviação</Navbar.Brand>
@@ -13,7 +19,8 @@ const NavbarHeader = ({ theme }) => {
         </Nav>
 
         <Nav>
-          <Button variant="outline-success" onClick={theme}>Switch Theme</Button>
+          {/* <Button variant="outline-success" onClick={theme}>Switch Theme</Button> */}
+          <Toggle theme={theme} toggleTheme={handleThemeToggler} />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
