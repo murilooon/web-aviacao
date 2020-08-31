@@ -8,8 +8,6 @@ class AddEditAirplanes extends Component {
   constructor(props) {
     super(props);
 
-    const { models } = props;
-
     var edit = this.props.location.state;
 
     if(edit) {

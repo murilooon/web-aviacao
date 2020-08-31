@@ -11,6 +11,8 @@ class NavbarHeader extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/models">Modelos</Nav.Link>
             <Nav.Link href="/airplanes">Aviões</Nav.Link>
+            <Nav.Link href="/syndicates">Sindicatos</Nav.Link>
+            <Nav.Link href="/employees">Empregados</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
