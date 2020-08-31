@@ -95,7 +95,7 @@ class AddEditEmployees extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/employee' />
+      return <Redirect to='/employees' />
     }
   }
 
@@ -116,7 +116,7 @@ class AddEditEmployees extends Component {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId="formBasicserialName">
+          <Form.Group controlId="formBasicName">
             <Form.Label>Nome</Form.Label>
             <Form.Control
               required
@@ -126,7 +126,7 @@ class AddEditEmployees extends Component {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicserialAddress">
+          <Form.Group controlId="formBasicAddress">
             <Form.Label>Endereço</Form.Label>
             <Form.Control
               required
@@ -136,7 +136,7 @@ class AddEditEmployees extends Component {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicserialPhone">
+          <Form.Group controlId="formBasicPhone">
             <Form.Label>Telefone</Form.Label>
             <Form.Control
               required
@@ -146,7 +146,7 @@ class AddEditEmployees extends Component {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicserialSalary">
+          <Form.Group controlId="formBasicSalary">
             <Form.Label>Salário</Form.Label>
             <Form.Control
               required
