@@ -21,6 +21,7 @@ const AllModels = ({ models, onChange, redirect, setRedirect, redirectModel }) =
               <p className="card-text">Capacidade: {model.capacity}</p>
               <p className="card-text">Peso: {model.weight}</p>
               <p className="card-text">ID do modelo: {model.model_id}</p>
+              <p className="card-text">Atualizado em: { model.updated_at.replace('T', ' ').substr(0, 19) }</p>
             </div>
             <div className="col-sm-2 button">
               {redirect ? <Redirect to={{pathname: `/addeditmodels`, state: { referrer: redirectModel }}} /> : <div></div>}

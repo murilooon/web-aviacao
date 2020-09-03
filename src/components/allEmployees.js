@@ -23,6 +23,7 @@ const AllEmployees = ({ employees, onChange, redirect, setRedirect, redirectEmpl
               <p className="card-text">Endereço: {employee.address}</p>
               <p className="card-text">Telefone: {employee.phone}</p>
               <p className="card-text">Salário: {employee.salary}</p>
+              <p className="card-text">Atualizado em: { employee.updated_at.replace('T', ' ').substr(0, 19) }</p>
             </div>
             <div className="col-sm-2 button">
               {redirect ? <Redirect to={{pathname: `/addeditemployees`, state: { referrer: redirectEmployee }}} /> : <div></div>}
