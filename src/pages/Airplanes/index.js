@@ -36,7 +36,7 @@ class Airplanes extends Component {
     var index = airplanesArray.indexOf(airplane)
     airplanesArray.splice(index, 1)
 
-    var id = airplane.register_id
+    var id = airplane._id
 
     api.delete(`/airplane/${id}`)
     .then(() => {

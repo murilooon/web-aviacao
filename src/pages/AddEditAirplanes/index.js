@@ -44,7 +44,7 @@ class AddEditAirplanes extends Component {
 
   addAirplane(model, serial_number) {
     api.post('/airplane', {
-      model_id: model,
+      model: model,
       serial_number: serial_number
     })
     .then(() => {
@@ -59,8 +59,8 @@ class AddEditAirplanes extends Component {
   updateAirplane(model, serial_number) {
     const { airplane } = this.state;
 
-    api.put(`/airplane/${airplane.register_id}`, {
-      model_id: model,
+    api.put(`/airplane/${airplane._id}`, {
+      model: model,
       serial_number: serial_number
     })
     .then(() => {
@@ -112,7 +112,7 @@ class AddEditAirplanes extends Component {
             <Form.Label>ID do Modelo</Form.Label>
             <Form.Control as="select">
               {models.map((model, key) => (
-                <option key={key}>{model.model_id}</option>
+                <option key={key}>{model._id}</option>
               ))}
             </Form.Control>
           </Form.Group>

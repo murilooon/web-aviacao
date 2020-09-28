@@ -36,7 +36,7 @@ class Employees extends Component {
     var index = employeesArray.indexOf(employee)
     employeesArray.splice(index, 1)
 
-    var id = employee.employee_id
+    var id = employee._id
 
     api.delete(`/employee/${id}`)
     .then(() => {
