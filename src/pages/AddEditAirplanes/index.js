@@ -44,7 +44,7 @@ class AddEditAirplanes extends Component {
 
   addAirplane(model, serial_number) {
     api.post('/airplane', {
-      model: model,
+      model_id: model,
       serial_number: serial_number
     })
     .then(() => {
@@ -60,7 +60,7 @@ class AddEditAirplanes extends Component {
     const { airplane } = this.state;
 
     api.put(`/airplane/${airplane._id}`, {
-      model: model,
+      model_id: model,
       serial_number: serial_number
     })
     .then(() => {

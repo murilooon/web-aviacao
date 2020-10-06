@@ -44,7 +44,7 @@ class AddEditEmployees extends Component {
 
   addEmployee(syndicate, name, address, phone, salary) {
     api.post('/employee', {
-      syndicate: syndicate,
+      syndicate_id: syndicate,
       name: name,
       address: address,
       phone: phone,
@@ -63,7 +63,7 @@ class AddEditEmployees extends Component {
     const { employee } = this.state;
 
     api.put(`/employee/${employee._id}`, {
-        syndicate: syndicate,
+        syndicate_id: syndicate,
         name: name,
         address: address,
         phone: phone,
