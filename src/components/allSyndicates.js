@@ -18,7 +18,7 @@ export const AllSyndicates = ({ syndicates, onChange, redirect, setRedirect, red
           <div className="row">
             <div className="card col-sm-10 padding">
               <h5 className="card-title">Nome: {syndicate.name}</h5>
-              <p className="card-text">ID do Sindicato: {syndicate.syndicate_id}</p>
+              <p className="card-text">ID do Sindicato: {syndicate._id}</p>
               <p className="card-text">Atualizado em: { syndicate.updated_at.replace('T', ' ').substr(0, 19) }</p>
             </div>
             <div className="col-sm-2 button">

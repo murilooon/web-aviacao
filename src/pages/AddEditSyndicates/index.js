@@ -45,7 +45,7 @@ class AddEditSyndicates extends Component {
   updateSyndicate(name) {
     const { syndicate } = this.state;
 
-    api.put(`/syndicate/${syndicate.syndicate_id}`, {
+    api.put(`/syndicate/${syndicate._id}`, {
       name: name
     })
     .then(() => {
@@ -80,7 +80,7 @@ class AddEditSyndicates extends Component {
     return (
         <div className="container">
           <center><h1>{isNewSyndicate ? "Adicionar" : "Editar"} Sindicato</h1></center>
-  
+
           <Form onSubmit={this.handleSubmit} >
             <Form.Group controlId="formBasicName">
               <Form.Label>Nome</Form.Label>

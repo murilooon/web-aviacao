@@ -62,7 +62,7 @@ class AddEditEmployees extends Component {
   updateEmployee(syndicate, name, address, phone, salary) {
     const { employee } = this.state;
 
-    api.put(`/employee/${employee.employee_id}`, {
+    api.put(`/employee/${employee._id}`, {
         syndicate_id: syndicate,
         name: name,
         address: address,
@@ -111,7 +111,7 @@ class AddEditEmployees extends Component {
             <Form.Label>ID do Sindicato</Form.Label>
             <Form.Control as="select">
               {syndicates.map((syndicate, key) => (
-                <option key={key}>{syndicate.syndicate_id}</option>
+                <option key={key}>{syndicate._id}</option>
               ))}
             </Form.Control>
           </Form.Group>

@@ -36,7 +36,7 @@ class Syndicates extends Component {
     var index = syndicatesArray.indexOf(syndicate)
     syndicatesArray.splice(index, 1)
 
-    var id = syndicate.syndicate_id
+    var id = syndicate._id
 
     api.delete(`/syndicate/${id}`)
     .then(() => {
